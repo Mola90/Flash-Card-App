@@ -1,29 +1,43 @@
-const { gql } = require("@apollo/server");
+const User = require("../models/user");
+const Flashcard = require("../models/flashcard");
+const { Query } = require("mongoose");
 
-const typeDefs = gql`
-type User {
-    id: ID!
-    name: String!
-    email: String!
-}
+const resolvers = {
+    Query: {
+        users: async () => {
+            return await User.find({});
+        },
+    
+        user: async ()=> {
+            return await User.findById(id);
+        },
 
-type Flashcard {
-    id: ID!
-    question: String!
-    answer: String!
-}
+        flashcards: async () => {
+            return await Flashcard.find({});
+        },
+        flashcard: async () => {
+            return await Flashcard.findById(id);
+        },
+    },
 
-type Query {
-    users: [User]
-    user(id: ID!): User
-    flashcards: [Flashcard]
-    flashcard(id: ID!): Flashcard
-}
+    Mutation: {
+        addUser: async (_, {name, email, age}) =>{
+            const user = new User({name, email, age});
+            await user.save();
+            return user;
+        },
+        addFlashcard: async (_, {question, answer, userId}) =>{ 
+            const flashcard = new Flashcard({question, answer, user: userId});
+            await flashcard.save();
+            return flashcard;
+        },
 
-type Mutation {
-    addUser(name: String!, email: String!): User
-    addFlashcard(question: String!, answer: String!): Flashcard
-}
-`;
+        User: {
+            flashcard: async () => {
+                return await Flashcard.find({ user: parent.id });
+            }
+        }
+    },
+};
 
-module.exports = typeDefs;
+module.exports = resolvers;

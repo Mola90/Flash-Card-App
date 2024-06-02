@@ -24,7 +24,7 @@ function Flashcard() {
                     />
                     
                     <div className="flex justify-center my-3">
-                    <button type="submit" className=" block w-8/12 bg-blue-500 text-white px-4 rounded-md hover:bg-blue-600 text-xl"> Submit</button>
+                    <button type="submit" className=" block w-8/12 bg-blue-500 text-white px-4 rounded-md hover:bg-blue-600 text-xl p-2"> Submit</button>
                     </div>
                     
                 </form>

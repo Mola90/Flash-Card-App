@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const Flashcard = require("../models/flashcard");
-const { Query } = require("mongoose");
 
 const resolvers = {
     Query: {
@@ -8,14 +7,14 @@ const resolvers = {
             return await User.find({});
         },
     
-        user: async ()=> {
+        user: async (_, { id })=> {
             return await User.findById(id);
         },
 
         flashcards: async () => {
             return await Flashcard.find({});
         },
-        flashcard: async () => {
+        flashcard: async (_, { id }) => {
             return await Flashcard.findById(id);
         },
     },
@@ -31,13 +30,13 @@ const resolvers = {
             await flashcard.save();
             return flashcard;
         },
-
-        User: {
-            flashcard: async () => {
-                return await Flashcard.find({ user: parent.id });
-            }
-        }
     },
+
+    User: {
+        flashcards: async (parent) => {
+            return await Flashcard.find({ user: parent.id });
+        }
+    }
 };
 
 module.exports = resolvers;

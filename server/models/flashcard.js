@@ -10,13 +10,13 @@ const flashcardSchema = new Schema({
         type: String,
         required: true,
     },
-    user : [
-        {
+    user : {
             type: Schema.Types.ObjectId,
-            ref: "Flashcards",
+            ref: "User",
             required: true,
         }
-    ]
+        
+    
 });
 
 

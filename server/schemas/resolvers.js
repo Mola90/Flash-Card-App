@@ -12,10 +12,10 @@ const resolvers = {
         },
 
         flashcards: async () => {
-            return await Flashcard.find({});
+            return await Flashcard.find({}).populate("user");
         },
         flashcard: async (_, { id }) => {
-            return await Flashcard.findById(id);
+            return await Flashcard.findById(id).populate("user");
         },
     },
 
@@ -28,6 +28,9 @@ const resolvers = {
         addFlashcard: async (_, {question, answer, userId}) =>{ 
             const flashcard = new Flashcard({question, answer, user: userId});
             await flashcard.save();
+
+            await User.findByIdAndUpdate(userId, { $push: { flashcards: flashcard._id } });
+
             return flashcard;
         },
     },
@@ -36,7 +39,8 @@ const resolvers = {
         flashcards: async (parent) => {
             return await Flashcard.find({ user: parent.id });
         }
-    }
+    },
+    
 };
 
 module.exports = resolvers;

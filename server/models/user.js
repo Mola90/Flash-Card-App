@@ -18,7 +18,7 @@ const userSchema = new Schema({
     flashcards: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Flashcards",
+            ref: "Flashcard",
         }
     ]
 });

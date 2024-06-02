@@ -1,11 +1,21 @@
+import { Link } from "react-router-dom";
+
 
 function NavBar() {
     return (
         <nav className="flex justify-center">
             <ul className="flex flex-col md:flex-row">
-                <li className="m-4 text-white md:text-xl hover:text-indigo-200">Home</li>
-                <li className="m-4 text-white md:text-xl hover:text-indigo-200">Create New Flashcards</li>
-                <li className="m-4 text-white md:text-xl hover:text-indigo-200">Practice</li>
+                <li className="m-4 text-white md:text-xl hover:text-indigo-200">
+                     <Link to="/">Home</Link>
+                </li>
+
+                <li className="m-4 text-white md:text-xl hover:text-indigo-200">
+                    <Link to="/create">Create New Flashcards</Link>
+                </li>
+
+                <li className="m-4 text-white md:text-xl hover:text-indigo-200">
+                    <Link to="/practice">Practice</Link>
+                </li>
             </ul>
         </nav>
 

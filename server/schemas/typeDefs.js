@@ -5,7 +5,7 @@ type User {
     id: ID!
     name: String!
     email: String!
-    age: Int!
+    password: String!
     flashcards: [Flashcard]
 }
 
@@ -24,7 +24,7 @@ type Query {
 }
 
 type Mutation {
-    addUser(name: String!, email: String!, age: Int!): User
+    addUser(name: String!, email: String!, password: String!): User
     addFlashcard(question: String!, answer: String!, userId: ID!): Flashcard
 }
 `;

@@ -20,8 +20,8 @@ const resolvers = {
     },
 
     Mutation: {
-        addUser: async (_, {name, email, age}) =>{
-            const user = new User({name, email, age});
+        addUser: async (_, {name, email, password}) =>{
+            const user = new User({name, email, password});
             await user.save();
             return user;
         },

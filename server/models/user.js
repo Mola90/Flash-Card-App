@@ -10,10 +10,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    age: {
-        type: Number,
+    password: {
+        type: String,
         required: true,
     },
+
     flashcards: [
         {
             type: Schema.Types.ObjectId,

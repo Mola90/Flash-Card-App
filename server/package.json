@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@apollo/server": "^4.10.4",
+    "apollo-server-express": "^3.13.0",
     "express": "^4.19.2",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",

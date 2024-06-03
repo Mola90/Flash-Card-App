@@ -16,3 +16,13 @@ query getUserByEmail($email: String!) {
   }
 }
 `;
+
+export const GET_FLASHCARDS = gql`
+  query GetFlashcards {
+    flashcards {
+      id
+      question
+      answer
+    }
+  }
+`;

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { GET_FLASHCARDS } from "../utils/queries";
 
 
 function Practice() {
@@ -6,7 +8,7 @@ function Practice() {
         {/* <div className=" bg-white  shadow-md rounded-lg w-full m-3 p-4 max-w-2xl " style={{minHeight: "50vh", backgroundColor: "rgb(100,130,246,1)"}}>
             <div>
                 <div className=" flex justify-center">
-                <h2 className=" text-5xl font-bold mb-4 text-slate-100  hover:text-slate-300" >Flashcard</h2>
+                <h2 className=" text-5xl font-bold mb-4 text-slate-100  hover:text-slate-300" >Question</h2>
                 </div>
 
                 <h2 className="text-xl md:mt-9 text-slate-100  hover:text-slate-300">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</h2>

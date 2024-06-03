@@ -19,6 +19,7 @@ type Flashcard {
 type Query {
     users: [User]
     user(id: ID!): User
+    userByEmail(email: String!): User
     flashcards: [Flashcard]
     flashcard(id: ID!): Flashcard
 }

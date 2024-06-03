@@ -10,6 +10,9 @@ const resolvers = {
         user: async (_, { id })=> {
             return await User.findById(id);
         },
+        userByEmail: async (_, { email }) => { 
+            return await User.findOne({ email });
+        },
 
         flashcards: async () => {
             return await Flashcard.find({}).populate("user");

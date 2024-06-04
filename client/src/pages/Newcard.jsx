@@ -7,25 +7,25 @@ function Flashcard() {
     
         const [question, setQuestion] = useState('');
         const [answer, setAnswer] = useState('');
-      
-        const [createFlashcard] = useMutation(CREATE_FLASHCARD, {
-          onCompleted: (data) => {
-            console.log('Flashcard created', data);
-            setQuestion('');
-            setAnswer('');
-          },
-          onError: (error) => {
-            console.error('Error creating flashcard', error);
-          }
-        });
-      
-        const handleSubmit = async (e) => {
+        const [createFlashcard] = useMutation(CREATE_FLASHCARD);
+
+        const handleCreateFlashcard = async (e) => {
           e.preventDefault();
           try {
-            await createFlashcard({ variables: { question, answer, userId: userId} });
-          } catch (error) {
-            console.error('Error submitting flashcard', error);
+            const result = await createFlashcard({
+              variables: {
+                question,
+                answer,
+                userId: "665cf0fa6bb6eee7e84f497d"
+              }
+            });
+            console.log('Flashcard created:', result.data.addFlashcard);
+          } catch (err) {
+            console.error('Error creating flashcard:', err);
           }
+          alert("1");
+          setAnswer("");
+          setQuestion("");
         };
 
 
@@ -37,7 +37,7 @@ function Flashcard() {
         <div className=" bg-white  shadow-md rounded-lg w-full m-3 p-4 max-w-2xl ">
             <div>
                 <h2 className=" text-5xl font-bold mb-4">Create Flashcard</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleCreateFlashcard}>
                     <label htmlFor="cardQuestion" className=" block text-gray-700 font-medium mb-2 text-xl">Question</label>
                     <input
                     type="text"

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_FLASHCARD } from "../utils/mutations";
 
-function Flashcard({ userId }) {
+function Flashcard() {
 
     
         const [question, setQuestion] = useState('');
@@ -22,7 +22,7 @@ function Flashcard({ userId }) {
         const handleSubmit = async (e) => {
           e.preventDefault();
           try {
-            await createFlashcard({ variables: { question, answer, userId } });
+            await createFlashcard({ variables: { question, answer, userId: userId} });
           } catch (error) {
             console.error('Error submitting flashcard', error);
           }

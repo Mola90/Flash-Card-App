@@ -5,12 +5,14 @@ import { CREATE_USER } from '../utils/mutations';
 import { QUERY_GETUSER } from '../utils/queries';
 import  background  from "../../src/assets/images/background.jpg";
 
+
 function Home() {
 
 const [signUpData, setSignUpData] = useState({ name: "", email: "", password: "" });
 const [signInData, setSignInData] = useState({ email: "", password: ""});
-const [userId, setUserId] = useState(null);
+const [userId, setUserId] = useState();
 const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [runQuery, setRunQuery] = useState(false);
 
 const [createUser] = useMutation(CREATE_USER, {
     onCompleted: (data) => {
@@ -23,7 +25,7 @@ const [createUser] = useMutation(CREATE_USER, {
 
 const { loading, data } = useQuery(QUERY_GETUSER, {
     variables: { email: signInData.email },
-    skip: !signInData.email,
+    skip: !runQuery,
     onCompleted: (data) => {
         if(data && data.userByEmail && data.userByEmail.password === signInData.password){
             setIsLoggedIn(true);
@@ -32,9 +34,13 @@ const { loading, data } = useQuery(QUERY_GETUSER, {
         }else{
             alert("Wrong username or password");
         }
+        setRunQuery(false);
     }
 
 });
+
+
+
 
 const handleSignUpChange = (e) => {
     const { name, value } = e.target;
@@ -58,6 +64,8 @@ const handleSignInChange = (e) => {
 
 const handleSignInSubmit = (e) => {
     e.preventDefault();
+    setRunQuery(true);
+    // refetch(); 
 }
 
     return(

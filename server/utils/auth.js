@@ -37,3 +37,5 @@ export function signToken({ email, name, _id }) {
   const payload = { email, name, _id };
   return jwt.sign({ authenticatedPerson: payload }, secret, { expiresIn: expiration });
 }
+
+export default { authMiddleware, signToken };

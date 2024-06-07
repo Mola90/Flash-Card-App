@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_FLASHCARD } from "../utils/mutations";
+import auth from "../utils/auth";
 
 function Flashcard() {
+
+
+        if (!auth.loggedIn()) {
+           return <h1 className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Please sign in to make cards</h1>;
+        }
 
     
         const [question, setQuestion] = useState('');
@@ -16,7 +22,7 @@ function Flashcard() {
               variables: {
                 question,
                 answer,
-                userId: "665cf0fa6bb6eee7e84f497d"
+                userId: ""
               }
             });
             console.log('Flashcard created:', result.data.addFlashcard);

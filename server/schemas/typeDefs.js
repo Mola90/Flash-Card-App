@@ -16,16 +16,27 @@ type Flashcard {
     user: User
 }
 
+type Auth {
+    token: ID!
+    user: User
+}
+
+type AuthPayload {
+    token: String!
+    user: User!
+}
+
 type Query {
     users: [User]
     user(id: ID!): User
-    userByEmail(email: String!): User
+    userByEmail(email: String!): AuthPayload
     flashcards: [Flashcard]
     flashcard(id: ID!): Flashcard
+    me: User
 }
 
 type Mutation {
-    addUser(name: String!, email: String!, password: String!): User
+    addUser(name: String!, email: String!, password: String!): Auth
     addFlashcard(question: String!, answer: String!, userId: ID!): Flashcard
 }
 `;

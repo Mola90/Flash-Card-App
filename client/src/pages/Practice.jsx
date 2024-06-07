@@ -1,19 +1,70 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GET_FLASHCARDS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
+import { QUERY_GETUSER } from "../utils/queries";
+import auth from "../utils/auth";
 
 
 function Practice() {
 
-    const { loading, error, data } = useQuery(GET_FLASHCARDS);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [showAnswer, setShowAnswer] = useState(false);
+  if (!auth.loggedIn()) {
+    return <h1 className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Please sign in to practice</h1>;
+ }
+
+  const [runQuery, setRunQuery] = useState(false);
+ 
+
+  useEffect(() => {
+    console.log("Inside useEffect");
+    
+    if (auth.loggedIn()) {
+      console.log("User is logged in");
+      setRunQuery(true);
+    } else {
+      console.log("The user is logged out");
+      alert("Please log in to access your flashcards");
+    }
+  },[]);
+
+
+  const [flashcards, setFlashcards] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  console.log("Before useQuery, runQuery:", runQuery);
+
+  const { loading, error, data } = useQuery(QUERY_GETUSER, {
+    variables: { email: auth.getProfile().email },
+    skip: !runQuery,
+    onCompleted: (data) => {
+      console.log("Query completed. Auth logged in:", auth.loggedIn());
+      if (auth.loggedIn()) {
+        console.log("Inside query onCompleted:", data.userByEmail.user.flashcards);
+        setFlashcards(data.userByEmail.user.flashcards);
+      } else {
+        alert("Wrong username or password");
+      }
+      setRunQuery(false);
+    },
+  });
+
+    // if (loading) {
+    //   console.log("Query is loading"); // Debugging statement to check loading state
+    //   return <p>Loading...</p>; // Handle loading state
+    // }
+    // console.log("outside", data.userByEmail.user.flashcards)
+    
+    const flashcardss = "lfdfdgfrrdf"
+    // if (loading) return <p>Loading...</p>;
+    // if (error) return <p>Error: {error.message}</p>;
+
+
+    
   
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    // if (loading) return <p>Loading...</p>;
+    if (error) { console.log("there is an errrrrrrrrrrrrrrr")}
   
-    const flashcards = data.flashcards;
-  
+    
     const handleCardClick = () => {
       setShowAnswer(!showAnswer);
     };
@@ -24,11 +75,13 @@ function Practice() {
     };
   
     const currentCard = flashcards[currentIndex];
+    console.log("current print cardddddddddddddddd", flashcards);
 
-
+  
 
     return (
-        <div className="flex items-center justify-center w-full min-h-screen">
+      <>{loading ? (<p className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Loading...</p>) : 
+        (<div className="flex items-center justify-center w-full min-h-screen">
           <div className="bg-white shadow-md rounded-lg w-full m-3 p-4 max-w-2xl" style={{ minHeight: "50vh", backgroundColor: "rgb(100,130,246,1)" }}>
             <div className="flex flex-col justify-between h-full " onClick={handleCardClick}>
               {showAnswer ? (
@@ -36,14 +89,14 @@ function Practice() {
                   <div className="flex justify-center ">
                     <h2 className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Answer</h2>
                   </div>
-                  <h2 className="text-xl md:mt-9 text-slate-100 hover:text-slate-300">{currentCard.answer}</h2>
+                  <h2 className="text-xl md:mt-9 text-slate-100 hover:text-slate-300">{currentCard?.answer }</h2>
                 </>
               ) : (
                 <>
                   <div className="flex justify-center">
                     <h2 className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Question</h2>
                   </div>
-                  <h2 className="text-xl md:mt-9 text-slate-100 hover:text-slate-300 mb-12">{currentCard.question}</h2>
+                  <h2 className="md:text-4xl md:mt-9 text-slate-100 hover:text-slate-300 mb-12">{currentCard?.question }</h2>
                 </>
               )}
             </div>
@@ -58,7 +111,8 @@ function Practice() {
             </div>
           </div>
         </div>
-      );
+    )}
+     </> );
 }
 
 export default Practice;

@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
@@ -9,8 +8,9 @@ import mongoose from 'mongoose';
 import typeDefs from './schema/typeDefs';
 import resolvers from './schema/resolvers';
 import authMiddleware from './utils/auth';
+import dotenv from "dotenv"; 
 
-
+dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();

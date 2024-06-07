@@ -13,7 +13,7 @@ import resolvers from './schema/resolvers';
 // connectDB();
 //l
 
-const { typeDefs, resolvers } = require('./schemas');
+// const { typeDefs, resolvers } = require('./schemas');
 // const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;

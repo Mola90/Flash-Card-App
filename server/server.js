@@ -5,6 +5,8 @@ const path = require('path');
 const cors = require("cors");
 const { authMiddleware } = require("./utils/auth");
 const connectDB = require("./config/connection");
+const mongoose = require('mongoose');
+
 
 // connectDB();
 //lll

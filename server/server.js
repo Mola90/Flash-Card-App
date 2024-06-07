@@ -10,11 +10,7 @@ import mongoose from 'mongoose';
 import typeDefs from './schema/typeDefs';
 import resolvers from './schema/resolvers';
 
-// connectDB();
-//l
 
-// const { typeDefs, resolvers } = require('./schemas');
-// const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();

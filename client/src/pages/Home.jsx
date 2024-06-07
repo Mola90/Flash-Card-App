@@ -110,7 +110,7 @@ const handleSignInSubmit = (e) => {
                     
                 </form>
 
-                {isLoggedIn && (<button className='my-4 bg-indigo-500  hover:bg-indigo-400 rounded-md p-2' onClick={() => setIsLoggedIn(false)}> Logout</button>)}
+                {auth.loggedIn() && (<button className='my-4 bg-indigo-500  hover:bg-indigo-400 rounded-md p-2' onClick={() => auth.logout() }> Logout</button>)}
 
                 <div className='flex justify-center my-8'> Or sign up</div>
 

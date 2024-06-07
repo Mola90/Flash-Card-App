@@ -13,16 +13,12 @@ const resolvers = {
         },
         userByEmail: async (_, { email }) => { 
             const user = await User.findOne({ email });
-            console.log("user my email attemped");
 
             if (!user){
-                console.log("if statement");
                 throw AuthenticationError;
             }
-            console.log("after ifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
             const token = signToken(user);
-            console.log("this is the tolken", token);
 
             return { token, user };
         },
@@ -31,7 +27,6 @@ const resolvers = {
             return await Flashcard.find({}).populate("user");
         },
         flashcard: async (_, { id }, context) => {
-            console.log("before ifffffffffffffffffffffffff");
             if(context.user){
             return await Flashcard.findById(id).populate("user");
             }
@@ -50,11 +45,9 @@ const resolvers = {
             const user = new User({name, email, password});
             await user.save();
             const token = signToken(user);
-            console.log( "this is the added user", {token, user});
             return { token, user };
         },
         addFlashcard: async (_, {question, answer, userId}, context) =>{ 
-            console.log( "this is outside the if staatment", context.user._id);
             if (context.user){
                 console.log( "this is indise  the if staatment", context.user);
 

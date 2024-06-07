@@ -29,7 +29,7 @@ function Flashcard() {
           } catch (err) {
             console.error('Error creating flashcard:', err);
           }
-          alert("1");
+          alert("card created");
           setAnswer("");
           setQuestion("");
         };

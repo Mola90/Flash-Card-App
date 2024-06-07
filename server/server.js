@@ -6,7 +6,7 @@ const cors = require("cors");
 const { authMiddleware } = require("./utils/auth");
 const connectDB = require("./config/connection");
 
-connectDB();
+// connectDB();
 
 const { typeDefs, resolvers } = require('./schemas');
 // const db = require('./config/connection');

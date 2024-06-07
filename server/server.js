@@ -4,11 +4,11 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import path from 'path';
 import cors from 'cors';
-import { authMiddleware } from './utils/auth';
 import connectDB from './config/connection';
 import mongoose from 'mongoose';
 import typeDefs from './schema/typeDefs';
 import resolvers from './schema/resolvers';
+import authMiddleware from './utils/auth';
 
 
 

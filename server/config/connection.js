@@ -1,19 +1,20 @@
 const mongoose = require("mongoose");
-require("env").config
+require("dotenv").config();
 
-
-   const uri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/flashcards";
-
-    mongoose.connect(uri, {});
-
-    const db = mongoose.connection;
-
-    db.on('connected', () => {
-      console.log('MongoDB connected successfully');
+const connectDB = async () => {
+  try {
+    const uri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/flashcards";
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
     });
-    
-    db.on('error', (err) => {
-      console.log('MongoDB connection error:', err);
-    });
-    
-    module.exports = db;
+    console.log('MongoDB connected successfully');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    process.exit(1); 
+  }
+};
+
+module.exports = connectDB;

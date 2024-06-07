@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 
 
 // connectDB();
-//lll
+//l
 
 const { typeDefs, resolvers } = require('./schemas');
 // const db = require('./config/connection');

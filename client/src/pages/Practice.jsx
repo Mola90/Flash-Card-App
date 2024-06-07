@@ -31,15 +31,12 @@ function Practice() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
 
-  console.log("Before useQuery, runQuery:", runQuery);
 
   const { loading, error, data } = useQuery(QUERY_GETUSER, {
     variables: { email: auth.getProfile().email },
     skip: !runQuery,
     onCompleted: (data) => {
-      console.log("Query completed. Auth logged in:", auth.loggedIn());
       if (auth.loggedIn()) {
-        console.log("Inside query onCompleted:", data.userByEmail.user.flashcards);
         setFlashcards(data.userByEmail.user.flashcards);
       } else {
         alert("Wrong username or password");
@@ -48,20 +45,13 @@ function Practice() {
     },
   });
 
-    // if (loading) {
-    //   console.log("Query is loading"); // Debugging statement to check loading state
-    //   return <p>Loading...</p>; // Handle loading state
-    // }
-    // console.log("outside", data.userByEmail.user.flashcards)
+
     
-    const flashcardss = "lfdfdgfrrdf"
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error: {error.message}</p>;
+
 
 
     
   
-    // if (loading) return <p>Loading...</p>;
     if (error) { console.log("there is an errrrrrrrrrrrrrrr")}
   
     
@@ -75,7 +65,6 @@ function Practice() {
     };
   
     const currentCard = flashcards[currentIndex];
-    console.log("current print cardddddddddddddddd", flashcards);
 
   
 

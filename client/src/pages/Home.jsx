@@ -28,14 +28,8 @@ const { loading, data } = useQuery(QUERY_GETUSER, {
     skip: !runQuery,
     onCompleted: (data) => {
         if(data && data.userByEmail.user && data.userByEmail.user.password === signInData.password){
-            console.log("this is logged in status before before", isLoggedIn);
-            // auth.login(data.userByEmail.token);
-            // setUserId(data.userByEmail.user.id)
-            console.log("this is logged in status before", isLoggedIn);
             setIsLoggedIn(true);
             auth.login(data.userByEmail.token);
-            console.log("this is logged in status", isLoggedIn);
-            // alert("you are logged in2");
         }else{
             alert("Wrong username or password");
         }
@@ -54,12 +48,9 @@ const handleSignUpChange = (e) => {
 
 const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    console.log("this is the event",e);
     try{
         const {data} = await createUser({variables: { ...signUpData }});
-        console.log("before data");
-        console.log(data);
-
+   
         alert("Account created");
         auth.login(data.addUser.token);
 

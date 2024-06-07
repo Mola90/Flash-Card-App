@@ -2,15 +2,16 @@ import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import path from 'path';
+import { fileURLToPath } from 'url'; // Import fileURLToPath to handle file URLs
 import cors from 'cors';
-import connectDB from './config/connection';
+import connectDB from './config/connection.js';
 import mongoose from 'mongoose';
-import typeDefs from './schema/typeDefs';
-import resolvers from './schema/resolvers';
-import authMiddleware from './utils/auth';
+import typeDefs from './schema/typeDefs.js';
+import resolvers from './schema/resolvers.js';
+import authMiddleware from './utils/auth.js';
 import dotenv from "dotenv"; 
 
-dotenv.config();
+dotenv.config();  // Load environment variables
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,6 +20,9 @@ const server = new ApolloServer({
     resolvers,
   });
 
+// Set up __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const startApolloServer = async () => {
   await connectDB();
@@ -49,4 +53,5 @@ const startApolloServer = async () => {
       });
     
 };
+
 startApolloServer();

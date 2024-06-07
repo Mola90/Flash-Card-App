@@ -1,12 +1,14 @@
-const express = require("express");
-const { ApolloServer } = require("@apollo/server");
-const { expressMiddleware } = require('@apollo/server/express4');
-const path = require('path');
-const cors = require("cors");
-const { authMiddleware } = require("./utils/auth");
-const connectDB = require("./config/connection");
-const mongoose = require('mongoose');
-
+import dotenv from 'dotenv';
+import express from 'express';
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import path from 'path';
+import cors from 'cors';
+import { authMiddleware } from './utils/auth';
+import connectDB from './config/connection';
+import mongoose from 'mongoose';
+import typeDefs from './schema/typeDefs';
+import resolvers from './schema/resolvers';
 
 // connectDB();
 //l

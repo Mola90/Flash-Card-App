@@ -56,7 +56,7 @@ const startApolloServer = async () => {
 
   } catch (error) {
     console.error('Failed to start the server:', error);
-    process.exit(1); /
+    process.exit(1); 
   }
 };
 

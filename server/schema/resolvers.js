@@ -1,6 +1,6 @@
-const User = require("../models/user");
-const Flashcard = require("../models/flashcard");
-const { signToken, AuthenticationError } = require("../utils/auth");
+import User from "../models/user.js";
+import Flashcard from "../models/flashcard.js";
+import { signToken, AuthenticationError } from "../utils/auth.js";
 
 const resolvers = {
     Query: {

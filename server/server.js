@@ -8,7 +8,7 @@ import connectDB from './config/connection.js';
 import mongoose from 'mongoose';
 import typeDefs from './schema/typeDefs.js';
 import resolvers from './schema/resolvers.js';
-import authMiddleware from './utils/auth.js';
+import {authMiddleware} from './utils/auth.js';
 import dotenv from "dotenv"; 
 
 dotenv.config();  

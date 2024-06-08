@@ -1,6 +1,6 @@
 import User from "../models/user.js";
 import Flashcard from "../models/flashcard.js";
-import { signToken, AuthenticationError } from "../utils/auth.js";
+import { AuthenticationError, signToken } from "../utils/auth.js";
 
 const resolvers = {
     Query: {

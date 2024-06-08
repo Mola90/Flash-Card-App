@@ -53,6 +53,7 @@ const handleSignUpSubmit = async (e) => {
    
         alert("Account created");
         auth.login(data.addUser.token);
+        window.location.pathname = '/'
 
     }catch(error){
         console.log("we have and error creating an account", error);
@@ -68,6 +69,11 @@ const handleSignInChange = (e) => {
 const handleSignInSubmit = (e) => {
     e.preventDefault();
     setRunQuery(true);
+    if (runQuery) {
+        setTimeout(() => {
+            window.location.pathname = '/'
+        }, 300);
+    }
 
 }
 

@@ -14,8 +14,8 @@ function NavBar() {
                 </li>
 
                 <li className="m-4 text-white md:text-xl hover:text-indigo-200">
-                    {/* <Link to="/practice">Practice</Link> */}
-                    <button onClick={()=> window.location.pathname ='/practice'}>Practice</button>
+                    <Link to="/practice">Practice</Link>
+                    {/* <button onClick={()=> window.location.pathname ='/practice'}>Practice</button> */}
                 </li>
             </ul>
         </nav>

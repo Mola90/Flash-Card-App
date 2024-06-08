@@ -6,12 +6,15 @@ import auth from "../utils/auth";
 
 
 function Practice() {
+  const [flashcards, setFlashcards] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [runQuery, setRunQuery] = useState(false);
 
   if (!auth.loggedIn()) {
     return <h1 className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Please sign in to practice</h1>;
  }
 
-  const [runQuery, setRunQuery] = useState(false);
  
 
   useEffect(() => {
@@ -26,15 +29,6 @@ function Practice() {
     }
   },[]);
 
-
-  const [flashcards, setFlashcards] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
-
-
-
-
-    
 
 
       const { loading, error, data } = useQuery(QUERY_GETUSER, {
@@ -54,12 +48,6 @@ function Practice() {
 
     
 
-
-
-    
-  
-
-  
     
     const handleCardClick = () => {
       setShowAnswer(!showAnswer);

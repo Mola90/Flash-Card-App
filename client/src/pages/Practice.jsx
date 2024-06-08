@@ -30,6 +30,7 @@ function Practice() {
   const [flashcards, setFlashcards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [isLoading, setisLoading] = useState(false)
 
 
  
@@ -49,6 +50,7 @@ function Practice() {
         },
       });
       if (error) { console.log("there is an errrrrrrrrrrrrrrr")}
+      if(loading){setisLoading(true)}
     }, [runQuery])
     
 
@@ -73,7 +75,7 @@ function Practice() {
   
 
     return (
-      <>{loading ? (<p className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Loading...</p>) : 
+      <>{isLoading ? (<p className="text-5xl font-bold mb-4 text-slate-100 hover:text-slate-300">Loading...</p>) : 
         (<div className="flex items-center justify-center w-full min-h-screen">
           <div className="bg-white shadow-md rounded-lg w-full m-3 p-4 max-w-2xl" style={{ minHeight: "50vh", backgroundColor: "rgb(100,130,246,1)" }}>
             <div className="flex flex-col justify-between h-full " onClick={handleCardClick}>

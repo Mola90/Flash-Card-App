@@ -53,7 +53,7 @@ const handleSignUpSubmit = async (e) => {
    
         alert("Account created");
         auth.login(data.addUser.token);
-        window.location.pathname = '/'
+        window.location.pathname = '/';
 
     }catch(error){
         console.log("we have and error creating an account", error);

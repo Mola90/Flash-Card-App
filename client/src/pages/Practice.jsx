@@ -32,20 +32,23 @@ function Practice() {
   const [showAnswer, setShowAnswer] = useState(false);
 
 
-  const { loading, error, data } = useQuery(QUERY_GETUSER, {
-    variables: { email: auth.getProfile().email },
-    skip: !runQuery,
-    onCompleted: (data) => {
-      if (auth.loggedIn()) {
-        setFlashcards(data.userByEmail.user.flashcards);
-      } else {
-        alert("Wrong username or password");
-      }
-      setRunQuery(false);
-    },
-  });
+ 
 
 
+    useEffect(() => {
+      const { loading, error, data } = useQuery(QUERY_GETUSER, {
+        variables: { email: auth.getProfile().email },
+        skip: !runQuery,
+        onCompleted: (data) => {
+          if (auth.loggedIn()) {
+            setFlashcards(data.userByEmail.user.flashcards);
+          } else {
+            alert("Wrong username or password");
+          }
+          setRunQuery(false);
+        },
+      });
+    }, [runQuery])
     
 
 

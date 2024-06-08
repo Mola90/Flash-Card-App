@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
 const Schema = mongoose.Schema;
 
 const flashcardSchema = new Schema({
@@ -22,4 +23,4 @@ const flashcardSchema = new Schema({
 
 const Flashcard = mongoose.model("Flashcard", flashcardSchema);
 
-module.exports = Flashcard;
+export default Flashcard;

@@ -1,4 +1,5 @@
-const User = require("./user");
-const Flashcard = require("./flashcard");
 
-module.exports  = {User, Flashcard};
+import User from "./user"
+import Flashcard from "./flashcard"
+
+export default {User, Flashcard};

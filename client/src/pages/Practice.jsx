@@ -48,6 +48,7 @@ function Practice() {
           setRunQuery(false);
         },
       });
+      if (error) { console.log("there is an errrrrrrrrrrrrrrr")}
     }, [runQuery])
     
 
@@ -55,7 +56,7 @@ function Practice() {
 
     
   
-    if (error) { console.log("there is an errrrrrrrrrrrrrrr")}
+
   
     
     const handleCardClick = () => {

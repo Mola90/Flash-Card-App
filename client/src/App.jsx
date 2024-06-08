@@ -9,7 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 
 
 const httpLink = createHttpLink({
-  uri: 'https://finalprojectflashcard-41e0f26c11e4.herokuapp.com/graphql',
+  uri: 'https://backendfinal22-0c18090067e6.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

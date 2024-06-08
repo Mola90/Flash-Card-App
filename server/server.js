@@ -11,7 +11,7 @@ import resolvers from './schema/resolvers.js';
 import authMiddleware from './utils/auth.js';
 import dotenv from "dotenv"; 
 
-dotenv.config();  // Load environment variables
+dotenv.config();  
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -20,7 +20,7 @@ const server = new ApolloServer({
     resolvers,
 });
 
-// Set up __dirname for ES Modules
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -38,7 +38,7 @@ const startApolloServer = async () => {
     }));
 
     if (process.env.NODE_ENV === 'production') {
-      app.use(express.static(path.join(__dirname, '../client')));
+      app.use(express.static(path.join(__dirname, '../client/dist')));
 
       app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '../client/index.html'));
@@ -56,7 +56,7 @@ const startApolloServer = async () => {
 
   } catch (error) {
     console.error('Failed to start the server:', error);
-    process.exit(1); // Exit the process with an error code
+    process.exit(1); /
   }
 };
 

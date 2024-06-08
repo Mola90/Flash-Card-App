@@ -3,7 +3,7 @@ import NavBar from './components/navbar'
 import { Outlet } from 'react-router-dom'
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 
 
 
